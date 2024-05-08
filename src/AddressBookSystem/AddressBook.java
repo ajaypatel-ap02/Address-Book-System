@@ -69,6 +69,18 @@ public class AddressBook {
             System.out.println("Contact not found. ");
         }
     }
+    public void deleteContacts (){
+        System.out.println("Enter first name to delete the contact ");
+        String firstName = scanner.next();
+
+        if(firstName.equalsIgnoreCase(contacts.getFirstName())) {
+            System.out.println("Contact found ");
+            contacts = null;
+            System.out.println("The contact is deleted ");
+        }else{
+            System.out.println("Contact does not found");
+        }
+    }
     public void displayContacts(){
 
         System.out.println("\nFirst Name:"+contacts.getFirstName());
@@ -88,6 +100,7 @@ public class AddressBook {
         System.out.println("Email:"+contacts.getEmail());
 
     }
+     
     public static void main(String[] args) {
 
         System.out.println("Welcome to Address book System");
@@ -96,9 +109,11 @@ public class AddressBook {
 
         addressBook.addContacts();
         addressBook.displayContacts();
+
         addressBook.editContacts();
         addressBook.displayContacts();
-
+        addressBook.deleteContacts();
+//        addressBook.displayContacts();//causing a NullPointerException
     }
 
 }
