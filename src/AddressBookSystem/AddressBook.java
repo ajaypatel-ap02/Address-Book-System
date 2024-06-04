@@ -82,7 +82,7 @@ public class AddressBook {
     /*
     *this function finds a particular contact in the address book
      */
-    public Contacts findContact(){
+    public Contacts searchContact(){
         if(!contactList.isEmpty()){
             System.out.println("Enter first name to find ");
             String firstName = scanner.next();
@@ -101,7 +101,7 @@ public class AddressBook {
      */
     public void editContacts(){
 
-           Contacts contacts = findContact();
+           Contacts contacts = searchContact();
             if(contacts != null){
                 System.out.println("Contact found. ");
 
@@ -139,7 +139,7 @@ public class AddressBook {
         */
     public void deleteContacts (){
 
-        Contacts contacts = findContact();
+        Contacts contacts = searchContact();
         if(contacts != null) {
             System.out.println("Contact found ");
             contactList.remove(contacts);
