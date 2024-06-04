@@ -1,5 +1,8 @@
 package AddressBookSystem;
 
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 public class Contacts {
     private String firstName;
     private String lastName;
@@ -9,6 +12,25 @@ public class Contacts {
     private String state;
     private String email;
     private String phoneNumber;
+    /*
+    * this take a string and a Scanner objects input
+    * and check the requirements and return a valid string
+    * this is basically made for getting a valid contact information
+     */
+    public static String checkInput(String str, Scanner sc){
+//        Pattern pattern = Pattern.compile("^[A-Z][A-Za-z]{2,}$");
+//        Matcher matcher = pattern.matcher(str);
+//        Pattern pattern = null;
+        String pattern = "^[A-Z][A-Za-z]{2,}$";
+        boolean flag = Pattern.matches(pattern,str);
+        while (!flag){
+            System.out.println("Please enter valid input [first letter capital and no number included");
+            str = sc.next();
+//            matcher = pattern.matcher(str);
+            flag = Pattern.matches(pattern,str);
+        }
+            return str;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -72,5 +94,19 @@ public class Contacts {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Contacts{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", city='" + city + '\'' +
+                ", address='" + address + '\'' +
+                ", zip='" + zip + '\'' +
+                ", state='" + state + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
     }
 }

@@ -1,12 +1,16 @@
 package AddressBookSystem;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class AddressBook {
     Scanner scanner = new Scanner(System.in);
 
-    ArrayList<Contacts> contactList = new ArrayList<>();
+    List<Contacts> contactList = new ArrayList<>();
+    /*
+    * this function work for performing operations over contacts inside the address book
+     */
     public void contactOperation(){
         int choice;
         do{
@@ -34,32 +38,35 @@ public class AddressBook {
                 break;
 
                 default:
-                    System.out.println("Invalid input \n");
+                    System.out.println("See you soon \n");
                     return;
             }
 
         }while(true);
 
     }
+    /*
+    * this function add a contact to the address book
+     */
     public void addContacts(){
 
         Contacts contacts = new Contacts();
 
         System.out.println("Enter first name");
-        contacts.setFirstName(scanner.next());
+        contacts.setFirstName(Contacts.checkInput(scanner.next(),scanner));
 
         System.out.println("Enter last name ");
-        contacts.setLastName(scanner.next());
+        contacts.setLastName(Contacts.checkInput(scanner.next(),scanner));
 
         System.out.println("Enter address ");
         scanner.nextLine();
-        contacts.setAddress(scanner.nextLine());
+        contacts.setAddress(Contacts.checkInput(scanner.next(),scanner));
 
         System.out.println("Enter city name ");
-        contacts.setCity(scanner.next());
+        contacts.setCity(Contacts.checkInput(scanner.next(),scanner));
 
         System.out.println("Enter state name ");
-        contacts.setState(scanner.next());
+        contacts.setState(Contacts.checkInput(scanner.next(),scanner));
 
         System.out.println("Enter zip code ");
         contacts.setZip(scanner.next());
@@ -72,7 +79,10 @@ public class AddressBook {
 
         contactList.add(contacts);
     }
-    public Contacts checkContact (){
+    /*
+    *this function finds a particular contact in the address book
+     */
+    public Contacts findContact(){
         if(!contactList.isEmpty()){
             System.out.println("Enter first name to find ");
             String firstName = scanner.next();
@@ -86,9 +96,12 @@ public class AddressBook {
         }
             return null;
     }
+    /*
+    * this function is made for edit the existing contact in the address book
+     */
     public void editContacts(){
 
-           Contacts contacts = checkContact();
+           Contacts contacts = findContact();
             if(contacts != null){
                 System.out.println("Contact found. ");
 
@@ -121,9 +134,12 @@ public class AddressBook {
             }
        }
 
+       /*
+       *this function is made for remove a particular contact from a address book
+        */
     public void deleteContacts (){
 
-        Contacts contacts = checkContact();
+        Contacts contacts = findContact();
         if(contacts != null) {
             System.out.println("Contact found ");
             contactList.remove(contacts);
@@ -132,26 +148,13 @@ public class AddressBook {
             System.out.println("Contact not Found");
         }
     }
-
+    /*
+    *this function is used to display the contact list of an address book
+     */
     public void displayContacts() {
         if (!contactList.isEmpty()) {
-            for (Contacts contacts : contactList) {
-
-                System.out.println("\nFirst Name:" + contacts.getFirstName());
-
-                System.out.println("Last Name:" + contacts.getLastName());
-
-                System.out.println("Address:" + contacts.getAddress());
-
-                System.out.println("City:" + contacts.getCity());
-
-                System.out.println("State:" + contacts.getState());
-
-                System.out.println("Zip Code:" + contacts.getZip());
-
-                System.out.println("Phone Number:" + contacts.getPhoneNumber());
-
-                System.out.println("Email:" + contacts.getEmail());
+            for(Contacts contacts : contactList){
+            System.out.println(contacts.toString());
 
             }
         } else {
